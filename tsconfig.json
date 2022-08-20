@@ -1,0 +1,28 @@
+{
+  // https://v3.nuxtjs.org/concepts/typescript
+  "extends": "./.nuxt/tsconfig.json",
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig.json to read more about this file */
+
+    /* Completeness */
+    "strict": true,
+    "skipLibCheck": true   ,
+    "baseUrl": ".",
+    "lib": ["es5", "es6", "esnext", "DOM"],
+    "target": "es2015",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "composite": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "noImplicitAny": false,
+    "sourceMap": true,
+    "noEmit": false,
+    "resolveJsonModule": true,
+    "types": [
+      "@vueuse/nuxt",
+    ]
+                     /* Skip type checking all .d.ts files. */
+  }
+}
