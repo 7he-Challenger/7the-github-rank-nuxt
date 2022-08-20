@@ -15,27 +15,34 @@ export default function useUserApi(){
 
   const getUserList = async () => {
     try{
-      const { data: lists } = await getHttp('search/users', {
+      console.log(page.value)
+      const { data: lists } = await getHttp('lists', 'search/users', {
         q: 'location:madagascar',
         page: page.value,
         per_page: per_page.value
       })
 
+      console.log(lists.value)
+
       userList.value = lists.value
-      total.value = Math.ceil(userList.value.total_count % per_page.value)
+      total.value = Math.ceil(userList.value.total_count / per_page.value)
     }catch(e){
       console.log('error', e)
     }
   }
 
   const nextPage = () => {
-    if(page.value < total.value) page.value = page.value + 1
-    getUserList()
+    if(page.value < total.value){
+      page.value = page.value + 1
+      getUserList()
+    }
   }
 
   const prevPage = () => {
-    if(page.value > 1) page.value = page.value - 1
-    getUserList()
+    if(page.value > 1){
+      page.value = page.value - 1
+      getUserList()
+    }
   }
 
   const goTo = (value) => {
@@ -48,6 +55,8 @@ export default function useUserApi(){
     userList,
     nextPage,
     prevPage,
-    goTo
+    goTo,
+    page,
+    total
   }
 }
