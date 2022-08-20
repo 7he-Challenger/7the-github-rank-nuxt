@@ -6,7 +6,8 @@
     prevPage,
     goTo,
     page,
-    total
+    total,
+    loading
   } = useUserApi();
 
   useHead({
@@ -61,6 +62,11 @@
   <div>
     <v-container>
       <v-table theme="dark">
+        <v-progress-linear
+          v-if="loading"
+          color="cyan"
+          streams
+        ></v-progress-linear>
         <thead>
           <tr>
             <th class="text-left">

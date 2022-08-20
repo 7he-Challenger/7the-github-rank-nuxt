@@ -12,22 +12,25 @@ export default function useUserApi(){
   const total = ref<number>(0);
   const page = ref<number>(1)
   const per_page = ref<number>(10)
+  const loading = ref<boolean>(false)
 
   const getUserList = async () => {
+    loading.value = true;
     try{
-      console.log(page.value)
-      const { data: lists } = await getHttp('lists', 'search/users', {
+      const { data: lists } = await getHttp('lists-'+page.value, 'search/users', {
         q: 'location:madagascar',
         page: page.value,
         per_page: per_page.value
       })
 
-      console.log(lists.value)
-
       userList.value = lists.value
-      total.value = Math.ceil(userList.value.total_count / per_page.value)
+      total.value = Math.ceil(userList.value.total_count / per_page.value) <= 100
+        ? Math.ceil(userList.value.total_count / per_page.value)
+        : 100
     }catch(e){
       console.log('error', e)
+    }finally{
+      loading.value = false;
     }
   }
 
@@ -57,6 +60,7 @@ export default function useUserApi(){
     prevPage,
     goTo,
     page,
-    total
+    total,
+    loading
   }
 }
