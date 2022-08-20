@@ -22,42 +22,6 @@
   await getUserList()
 </script>
 
-<!-- <script>
-  export default {
-    async setup(){
-      const { 
-        userList, 
-        getUserList,
-        nextPage,
-        prevPage,
-        goTo,
-        page,
-        total
-      } = useUserApi();
-
-      useHead({
-        title: 'List of User',
-        viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
-        charset: 'utf-8',
-        meta: [
-          { name: 'description', content: 'Github list of user ranking' }
-        ],
-      })
-      
-      await getUserList()
-
-      return {
-        userList,
-        page,
-        nextPage,
-        prevPage,
-        goTo,
-        total
-      }
-    }
-  }
-</script> -->
-
 <template>
   <div>
     <v-container>
