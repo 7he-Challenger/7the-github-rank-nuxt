@@ -29,4 +29,6 @@ export default defineNuxtConfig({
     ssrHandlers: true,
   },
   components: true,
+  ssr: false,
+  target: 'static'
 })
